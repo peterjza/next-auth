@@ -10,7 +10,7 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  adapter:PrismaAdapter(db),
+  adapter: PrismaAdapter(db),
   session: {strategy: 'jwt'},
   ...authConfig,
 })
