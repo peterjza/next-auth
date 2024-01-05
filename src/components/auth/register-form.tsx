@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
-import { useState, useTransition } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterSchema } from '@/schemas';
+import * as z from 'zod'
+import { useForm } from 'react-hook-form'
+import { useState, useTransition } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { RegisterSchema } from '@/schemas'
 
 import {
 	Form,
@@ -13,18 +13,18 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { CardWrapper } from '@/components/auth/card-wrapper';
-import { FormError } from '@/components/form-error';
-import { FormSuccess } from '@/components/form-success';
-import { register } from '@/actions/register';
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { CardWrapper } from '@/components/auth/card-wrapper'
+import { FormError } from '@/components/form-error'
+import { FormSuccess } from '@/components/form-success'
+import { register } from '@/actions/register'
 
 export const RegisterForm = () => {
-	const [error, setError] = useState<string | undefined>('');
-	const [success, setSuccess] = useState<string | undefined>('');
-	const [isPending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>('')
+	const [success, setSuccess] = useState<string | undefined>('')
+	const [isPending, startTransition] = useTransition()
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
@@ -33,19 +33,19 @@ export const RegisterForm = () => {
 			password: '',
 			name: '',
 		},
-	});
+	})
 
 	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-		setError('');
-		setSuccess('');
+		setError('')
+		setSuccess('')
 
 		startTransition(() => {
 			register(values).then(({ error, success }) => {
-				setError(error);
-				setSuccess(success);
-			});
-		});
-	};
+				setError(error)
+				setSuccess(success)
+			})
+		})
+	}
 
 	return (
 		<CardWrapper
@@ -71,7 +71,7 @@ export const RegisterForm = () => {
 											{...field}
 											disabled={isPending}
 											placeholder='John Doe'
-											type='password'
+											type='text'
 										/>
 									</FormControl>
 									<FormMessage />
@@ -127,5 +127,5 @@ export const RegisterForm = () => {
 				</form>
 			</Form>
 		</CardWrapper>
-	);
-};
+	)
+}
