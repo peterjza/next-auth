@@ -8,7 +8,6 @@ const SettingsPage = async () => {
 			<form
 				action={async () => {
 					'use server'
-					console.log(123)
 					await signOut()
 				}}
 			>
