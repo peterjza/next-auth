@@ -6,6 +6,7 @@ import { signIn } from '@/auth';
 import { LoginSchema } from '@/schemas';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
+import { sendVerificationEmail } from '@/lib/mail';
 import { generateVerificationToken } from '@/lib/tokens';
 import { getUserByEmail } from '@/data/user';
 
@@ -18,16 +19,19 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
     const { email, password} = validatedFields.data
 
-    const exisitingUser = await getUserByEmail(email)
+    const existingUser = await getUserByEmail(email)
 
-    if (!exisitingUser || !exisitingUser.email || !exisitingUser.password) {
-        return {error: 'Email does not exist'}
+    if (!existingUser || !existingUser.email || !existingUser.password) {
+        console.log(existingUser)
+        return {error: 'Email does not exist !'}
     }
 
     // TODO Inccorect password does get triggered
-    if (!exisitingUser.emailVerified) {
-        const verificationToken = generateVerificationToken(exisitingUser.email)
+    if (existingUser.email && !existingUser.emailVerified) {
+        const verificationToken = await generateVerificationToken(email)
         
+         await sendVerificationEmail(verificationToken.email, verificationToken.token)
+
         return {error: 'Confirmation email sent'}
     }
 
