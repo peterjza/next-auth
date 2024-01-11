@@ -1,6 +1,6 @@
 'use client'
 
-import { admin } from '@/actions/admin'
+import { admin } from '@/app/actions/admin'
 import { RoleGate } from '@/components/auth/role-gate.tsx'
 import { FormSuccess } from '@/components/form-success'
 import { Button } from '@/components/ui/button'

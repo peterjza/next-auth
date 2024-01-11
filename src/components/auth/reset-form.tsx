@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import { CardWrapper } from '@/components/auth/card-wrapper'
 import { FormError } from '@/components/form-error'
 import { FormSuccess } from '@/components/form-success'
-import { reset } from '@/actions/reset'
+import { reset } from '@/app/actions/reset'
 
 export const ResetForm = () => {
 	const [error, setError] = useState<string | undefined>('')

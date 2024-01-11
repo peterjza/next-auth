@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button'
 import { CardWrapper } from '@/components/auth/card-wrapper'
 import { FormError } from '@/components/form-error'
 import { FormSuccess } from '@/components/form-success'
-import { newPassword } from '@/actions/new-password'
+import { newPassword } from '@/app/actions/new-password'
 import { useSearchParams } from 'next/navigation'
 
 export const NewPasswordForm = () => {
