@@ -55,7 +55,7 @@ export const SettingsSchema = z.object({
     return true
 },{
     message: 'Password is required',
-    path: ['newPassword']
+    path: ['password']
 });
 
 

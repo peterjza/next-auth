@@ -10,7 +10,7 @@ import { sendVerificationEmail } from '@/lib/mail';
 import { generateVerificationToken } from '@/lib/tokens';
 import { getUserByEmail } from '@/data/user';
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?:string | null) => {
     const validatedFields = LoginSchema.safeParse(values)
 
     if (!validatedFields.success) {
@@ -39,7 +39,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         await signIn('credentials', {
             email,
             password,
-            redirectTo: DEFAULT_LOGIN_REDIRECT
+            redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
         })
         
         return {success: ''}
