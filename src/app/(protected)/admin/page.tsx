@@ -8,7 +8,7 @@ import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { UserRole } from '@prisma/client'
 import { toast } from 'sonner'
 
-export const AdminPage = async () => {
+const AdminPage = () => {
 	const onServerActionClick = () => {
 		admin().then(data => {
 			if (data.error) {
